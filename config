@@ -13,7 +13,6 @@ set $mod Mod1
 
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
-exec_always feh --bg-fill ~/Pictures/hood.jpg
 exec_always --no-startup-id picom &
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -117,6 +116,19 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+#Some exec shit
+exec --no-startup-id xrandr --output DisplayPort-2 --mode 2560x1440 --rate 144 --rotate left --pos 2560x400 --right-of HDMI-A-0
+exec --no-startup-id xrandr --output HDMI-A-0 --mode 2560x1440 --rate 144 --rotate normal --pos 0x400
+
+exec --no-startup-id feh --bg-fill ~/Pictures/halfdome.jpg
+
+#Some workspace shit
+workspace "1: Main" output HDMI-A-0
+workspace "2: Secondary" output DisplayPort-2
+
+
+
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -131,8 +143,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
+bindsym $mod+1 workspace "1: Main"
+bindsym $mod+2 workspace "2: Secondary"
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
@@ -143,8 +155,8 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+1 move container to workspace "1: Main"
+bindsym $mod+Shift+2 move container to workspace "2: Secondary"
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
